@@ -1,0 +1,32 @@
+{
+  "name": "tsmania",
+  "version": "1.0.0",
+  "description": "Mega fancy ts environment by gpasquali.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pasquali276/tsPower.git"
+  },
+  "keywords": [
+    "typescript",
+    "environment",
+    "webpack",
+    "tsc",
+    "automated",
+    "testing"
+  ],
+  "author": "George Pasquali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pasquali276/tsPower/issues"
+  },
+  "homepage": "https://github.com/pasquali276/tsPower#readme",
+  "devDependencies": {
+    "d3": "^4.7.4",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.2.2"
+  }
+}
