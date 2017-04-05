@@ -27,6 +27,10 @@
   "devDependencies": {
     "d3": "^4.7.4",
     "ts-loader": "^2.0.3",
-    "typescript": "^2.2.2"
+    "typescript": "^2.2.2",
+    "webpack": "^2.3.3"
+  },
+  "dependencies": {
+    "@types/d3": "^4.7.0"
   }
 }
