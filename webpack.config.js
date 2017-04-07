@@ -18,19 +18,31 @@ module.exports = {
    * The resolve lets you specify the filetypes that you are going to use in your app.
    */
   resolve: {
-    extensions: ["*", ".ts", ".tsx", ".js"]  // " " extension is deprecated
+    extensions: ["*", ".ts", ".tsx", ".js"] // " " extension is deprecated
   },
+
+  devtool: 'source-map',
 
   module: {
     /*
      * Goes trough all files and checks trough regex if they
      * need to be loaded and if so it uses the loader specified.
      */
-    loaders: [
-      { // this is the ts loader which uses the tsc compiler trough the tsconfig.
+    loaders: [{ // this is the ts loader which uses the tsc compiler trough the tsconfig.
         test: /\.tsx?$/,
         loader: "ts-loader",
         exclude: /node_modules/
+      },
+      {
+        test: /\.js$/, // if the files contains .js we use the compiler to compile to js 
+        exclude: /node-modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/, // if the files contains .css we use the compiler to compile to js 
+        include: path.resolve(__dirname, "css"),
+        exclude: /node-modules/,
+        loaders: ['style-loader', 'css-loader']
       }
     ]
   }

@@ -2,6 +2,8 @@ import User from './someModule';
 import constructionPattern from './_constructionPattern'
 import * as selector from 'd3-selection';
 import * as axis from 'd3-axis';
+import CProperty from './_properties'
+
 
 class HDC {
     private _properties:any;
@@ -10,14 +12,12 @@ class HDC {
 
 
 
-    constructor(divContainer:string, chartType: string, properties: object){
+    constructor(querySelector:string, chartType: string){
         
-        if(divContainer)
-        {
-            let setParentSelector = selector.select(divContainer);
-
-            this._constructionPattern.setParentSelector(setParentSelector);
-        }
+        let parentSelector = selector.select(querySelector);
+        let parentDom = parentSelector.node();
+        console.log(parentDom);
+        
 
     }
 
@@ -26,10 +26,23 @@ class HDC {
 
 }
 
-var goga = new User('goga', 22);
-goga.introduceYourself();
-goga.useD3();
+var baba = new HDC("targetDiv",'neeee');
 
-selector.select("body").append("rect").text("this is my first d3 inside my env");
+let goga = new CProperty({
+    width:500,
+    height:500,
+});
+// selector.select("body").append("rect").text("this is my first d3 inside my env");
 
+let randConfig = {
+    margins:{
+        top:20,
+        right:20,
+        bottom:60,
+        left:60
+    },
+    chartType:  "bar",
+    width:500,
+    height:400
 
+}
