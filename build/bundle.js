@@ -1,3 +1,4 @@
+window["HDC"] =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -63,7 +64,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 50);
+/******/ 	return __webpack_require__(__webpack_require__.s = 51);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -511,31 +512,40 @@ function empty() {
 
 exports.__esModule = true;
 var selector = __webpack_require__(14);
-var _properties_1 = __webpack_require__(49);
+var _barChartProperties_1 = __webpack_require__(49);
 var HDC = (function () {
     function HDC(querySelector, chartType) {
         var parentSelector = selector.select(querySelector);
-        var parentDom = parentSelector.node();
-        console.log(parentDom);
+        this._constructionPattern.setParentSelector(parentSelector);
+        var pWidth = parentSelector.style('width');
+        var intWidth = parseInt(pWidth, 10);
+        var pHeight = parentSelector.style('height');
+        var intHeight = parseInt(pHeight, 10);
+        var margins = this.marginsGenerator(intHeight, intWidth);
+        if (chartType === 'bar' || chartType === 'Bar') {
+            this._properties = new _barChartProperties_1["default"]({
+                width: pWidth,
+                height: pHeight,
+                margins: margins,
+                bomba: "makarena"
+            });
+        }
     }
+    HDC.prototype.marginsGenerator = function (pHeight, pWidth) {
+        var top = (pHeight * 4) / 100;
+        var right = (pWidth * 4) / 100;
+        var left = (pWidth * 12) / 100;
+        var bottom = (pHeight * 12) / 100;
+        return {
+            top: top,
+            right: right,
+            bottom: bottom,
+            left: left
+        };
+    };
     return HDC;
 }());
-var baba = new HDC("targetDiv", 'neeee');
-var goga = new _properties_1["default"]({
-    width: 500,
-    height: 500
-});
-var randConfig = {
-    margins: {
-        top: 20,
-        right: 20,
-        bottom: 60,
-        left: 60
-    },
-    chartType: "bar",
-    width: 500,
-    height: 400
-};
+exports["default"] = HDC;
 
 
 /***/ }),
@@ -1474,15 +1484,71 @@ function textFunction(value) {
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var _properties_1 = __webpack_require__(50);
+var barChartProperties = (function (_super) {
+    __extends(barChartProperties, _super);
+    function barChartProperties(config) {
+        var _this = _super.call(this, config) || this;
+        if (config.barsSpacing) {
+            _this.barsSpacing = config.barsSpacing;
+        }
+        if (config.isHorizontal) {
+            _this.isHorizontal = config.isHorizontal;
+        }
+        return _this;
+    }
+    return barChartProperties;
+}(_properties_1["default"]));
+exports["default"] = barChartProperties;
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
 exports.__esModule = true;
 var CProperties = (function () {
     function CProperties(config) {
-        if (config.width) {
-            this.width = config.width;
+        var width = config.width, height = config.height, margins = config.margins, leftOnes = __rest(config, ["width", "height", "margins"]);
+        console.log(leftOnes);
+        if (width) {
+            this.width = width;
+        }
+        if (height) {
+            this.height = height;
+        }
+        if (config.id) {
+            this.id = config.id;
+        }
+        if (margins) {
+            this.margins = margins;
+        }
+        if (config.chartType) {
+            this.chartType = config.chartType;
         }
     }
-    CProperties.prototype.setWidthAndHeight = function (width, height) {
-    };
     CProperties.prototype.setClass = function (classStr) {
         this["class"] = classStr;
     };
@@ -1492,7 +1558,7 @@ exports["default"] = CProperties;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(13);
