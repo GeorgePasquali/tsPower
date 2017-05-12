@@ -1,2 +1,2 @@
 # tsPower
-Time to check out this ts gangster. For real.
+Time to check out this ts gangster. 
