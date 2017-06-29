@@ -11,7 +11,8 @@ module.exports = {
   // In the output we specify where to store the bundle and under what filename.
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    library: 'app'
   },
 
   /*
@@ -33,11 +34,11 @@ module.exports = {
         loader: "ts-loader",
         exclude: /node_modules/
       },
-      {
-        test: /\.js$/, // if the files contains .js we use the compiler to compile to js 
-        exclude: /node-modules/,
-        loader: 'babel-loader'
-      },
+      // {
+      //   test: /\.js$/, // if the files contains .js we use the compiler to compile to js 
+      //   exclude: /node-modules/,
+      //   loader: 'babel-loader'
+      // },
       {
         test: /\.css$/, // if the files contains .css we use the compiler to compile to js 
         include: path.resolve(__dirname, "css"),
